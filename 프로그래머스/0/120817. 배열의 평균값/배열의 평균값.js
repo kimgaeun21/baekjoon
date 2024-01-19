@@ -4,4 +4,5 @@ function solution(numbers) {
         answer += i
     }
     return answer/numbers.length;
+
 }
