@@ -1,25 +1,40 @@
 def solution(n, arr1, arr2):
-    answer = 0
-    dp1=[0 for _ in range (n)]
-    dp2=[0 for _ in range (n)]
+    # answer = 0
+    # dp1=[0 for _ in range (n)]
+    # dp2=[0 for _ in range (n)]
     
-    dp1[0] = arr1[0]
-    dp2[0] = arr2[0]
+    # dp1[0] = arr1[0]
+    # dp2[0] = arr2[0]
+    
+    # if n == 1:
+    #     return max(dp1[0], dp2[0])
+    
+    # dp1[1] = arr1[1] + dp2[0]
+    # dp2[1] = arr2[1] + dp1[0]
+    
+    # if n ==2:
+    #     return max(dp1[1], dp2[1])
+    
+    # for i in range(2,n):
+    #     dp1[i] = arr1[i] + max(dp1[i-2], dp2[i-1], dp2[i-2])
+    #     dp2[i] = arr2[i] + max(dp2[i-2], dp1[i-1], dp1[i-2])
+    
+    # answer = max(max(dp1), max(dp2))
     
     if n == 1:
-        return max(dp1[0], dp2[0])
+        return max(arr1[0], arr2[0])
     
-    dp1[1] = arr1[1] + dp2[0]
-    dp2[1] = arr2[1] + dp1[0]
+    arr1[1] += arr2[0]
+    arr2[1] += arr1[0]
     
-    if n ==2:
-        return max(dp1[1], dp2[1])
+    if n == 2:
+        return max(arr1[1], arr2[1])
     
-    for i in range(2,n):
-        dp1[i] = arr1[i] + max(dp1[i-2], dp2[i-1], dp2[i-2])
-        dp2[i] = arr2[i] + max(dp2[i-2], dp1[i-1], dp1[i-2])
+    for i in range(2, n):
+        arr1[i] += max(arr1[i-2], arr2[i-1], arr2[i-2])
+        arr2[i] += max(arr2[i-2], arr1[i-1], arr1[i-2])
     
-    answer = max(max(dp1), max(dp2))
+    answer = max(max(arr1), max(arr2))
     return answer
 
 t = int(input())
