@@ -1,33 +1,34 @@
-from itertools import combinations
+import sys
 
-n, x= map(int, input().split())
 
-array= list(input().split())
-array.sort()
-combi=[]
+def back_tracking(cnt, idx):
 
-for i in combinations(array,n):
-    combi.append(i)
+    # 암호를 만들었을 때
+    if cnt == l:
+        # 모음, 자음 체크
+        vo, co = 0, 0
 
-for i in range(len(combi)):
-    x = 0
-    if 'a' in combi[i]:
-        x = x + 1
-    if 'e' in combi[i]:
-        x = x + 1
-    if 'i' in combi[i]:
-        x = x + 1
-    if 'o' in combi[i]:
-        x = x + 1
-    if 'u' in combi[i]:
-        x = x + 1
-    
-    if x < 1:
-        continue
-    elif n-x < 2:
-        continue
-    
-    for j in range(n-1):
-        print(combi[i][j], end='')
-    print(combi[i][n-1])
+        for i in range(l):
+            if answer[i] in consonant:
+                vo += 1
+            else:
+                co += 1
 
+        # 모음 1개 이상, 자음 2개 이상
+        if vo >= 1 and co >= 2:
+            print("".join(answer))
+
+        return
+
+    # 반복문을 통해 암호를 만든다.
+    for i in range(idx, c):
+        answer.append(words[i])
+        back_tracking(cnt + 1, i + 1) # 백트래킹
+        answer.pop()
+
+
+l, c = map(int, sys.stdin.readline().split())
+words = sorted(list(map(str, sys.stdin.readline().split())))
+consonant = ['a', 'e', 'i', 'o', 'u']
+answer = []
+back_tracking(0, 0)
