@@ -8,7 +8,7 @@ function solution(dots) {
     y = (d[1] - c[1]) / (d[0] - c[0]);
 
     if (x === y) {
-      answer += 1;
+      answer = 1;
     }
   }
 
@@ -18,5 +18,5 @@ function solution(dots) {
 
   cal(dots[0], dots[3], dots[1], dots[2]);
 
-  return answer > 0 ? 1 : 0;
+  return answer;
 }
